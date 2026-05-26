@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  jobmanager:
+    image: flink:1.18.1
+    container_name: jobmanager
+
+    ports:
+      - "8081:8081"
+
+    command: jobmanager
+
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+
+    networks:
+      - shared-network
+
+  taskmanager:
+    image: flink:1.18.1
+    container_name: taskmanager
+
+    depends_on:
+      - jobmanager
+
+    command: taskmanager
+
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    external: true
+    name: data-platform-network
