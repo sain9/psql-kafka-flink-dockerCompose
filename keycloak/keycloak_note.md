@@ -183,3 +183,23 @@ Select:
 ADMIN (the real role we created above)
 
 Click Assign.
+
+
+
+## to get client secret do all the registered steps and then,
+
+go to clinets -> Client secret 
+ and copy the the client secret,
+
+
+and after that verify the below curl after replacing your client secret client id etc
+
+curl --location 'http://localhost:9001/realms/platform/protocol/openid-connect/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'client_id=platform-gateway' \
+--data-urlencode 'client_secret=odnGY6ikW2sJf59eKXh8oFzfsDv8Jiw3' \
+--data-urlencode 'username=hussain' \
+--data-urlencode 'password=hussain'
+
+ 
